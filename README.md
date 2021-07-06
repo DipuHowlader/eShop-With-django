@@ -13,14 +13,14 @@ This repo is functionality complete — PR's and issues welcome!
 
 3. Active virtualenv(for linux)::
 	`source env/Scripts/activate`
-
+	
 4. Install dependencies::
 	`pip install -r requirements.txt`
 	
-5.create Migrations `python manage.py makemigrations`
+5. create Migrations `python manage.py makemigrations`
 
-6.Migrate Database `python manage.py migrate`
+6. Migrate Database `python manage.py migrate`
 
-7.Create Super User `python manage.py createsuperuser`
+7. Create Super User `python manage.py createsuperuser`
 
 8. Finally Run The Project `python manage.py runserver`
