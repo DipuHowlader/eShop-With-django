@@ -7,18 +7,20 @@ This repo is functionality complete — PR's and issues welcome!
 
 ## Installation
 
-#. Clone this repository: `git clone https://github.com/DipuHowlader/eShop-With-django.git`.
+1. Clone this repository: `git clone https://github.com/DipuHowlader/eShop-With-django.git`::
 
-#. Create a Python 3.9 virtualenv
+2. Create a Python 3.9 virtualenv
 
-#. Active virtualenv(for linux)::
-	source env/Scripts/activate
+3. Active virtualenv(for linux)::
+	`source env/Scripts/activate`
 
-#. Install dependencies::
-	pip install -r requirements.txt
+4. Install dependencies::
+	`pip install -r requirements.txt`
+	
+5.create Migrations `python manage.py makemigrations`
 
-#.Migrate Database `python manage.py migrate`
+6.Migrate Database `python manage.py migrate`
 
-#.Create Super User `python manage.py createsuperuser`
+7.Create Super User `python manage.py createsuperuser`
 
-#. Finally Run The Project `python manage.py runserver`
+8. Finally Run The Project `python manage.py runserver`
