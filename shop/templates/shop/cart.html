@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Cart{% endblock title %}
+
+{% block breadcrumbs %}
+	<!--start-breadcrumbs-->
+	<div class="breadcrumbs">
+		<div class="container">
+			<div class="breadcrumbs-main">
+				<ol class="breadcrumb">
+					<li><a href="{% url 'shop:homePage' %}">Home</a></li>
+					<li class="active">Cart</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+	<!--end-breadcrumbs-->
+	
+{% endblock breadcrumbs %}
+
+{% block content %}
+	<!--start-ckeckout-->
+	<div class="ckeckout">
+		<div class="container">
+			<div class="ckeckout-top">
+				<div class=" cart-items heading">
+				<h3>My Shopping Bag ({{cartData.quantity}})</h3>
+				{% if carts %}
+					<ul class="unit my-5">
+						<li><span>Item</span></li>
+						<li><span>Product Name</span></li>		
+						<li><span>Unit Price</span></li>
+						<li><span>Quantity</span></li>
+						<li> <span>Total</span></li>
+						<div class="clearfix"> </div>
+					</ul>
+				{% endif %}
+				<div class="in-check" >
+					{% for item in carts %}
+					
+						<ul class="cart-header">
+							<div data-product = '{{item.product.id}}' data-action = 'remove' class="close1"></div>
+						</form>
+							<li class="ring-in"><a href="{% url 'shop:singleProductPage' item.product.id %}" ><img src="{{item.product.image_url.url}}" class="img-responsive cart-img" alt="product-img"></a>
+							</li>
+							<li><span>{{item.product.title}}</span></li>
+							<li><span>$</span><span class='price'>{{item.product.price}}</span></li>
+							<li class='cart'>
+								<div class="c-btns">
+									<span class='plus'><img data-action='increase' data-product='{{item.product.id}}' src="{% static './images/icon/arrow.svg' %}" alt="up"></span>
+									<span class='minus'><img data-action='decrease' data-product='{{item.product.id}}' src="{% static './images/icon/arrow.svg' %}" alt="down"></span>
+								</div>
+								<span class='quantity'>{{item.quantity}}</span>
+							</li>
+							<li> <span>$</span> <span class='total'>{{item.price}}</span></li>
+						<div class="clearfix"> </div>
+					</ul>
+					{% empty %}
+						<p style='font-size:30px;text-align:center;'>you have no item in cart</p>
+					{% endfor %} 
+					
+					
+				</div>
+				</div>  
+                <div class="btns">
+                    <a href="{% url 'shop:productsPage' %}" class='btn'>continue shoping</a>
+					{% if cartQuantity %}
+                   		<a href="{% url 'shop:checkoutPage' %}" class='btn shop' >Checkout</a>
+					{% endif %}
+                
+                </div>
+		 	</div>
+		</div>
+	</div>
+	<!--end-ckeckout-->
+	<script >
+	function getCookie(name) {
+		let cookieValue = null;
+		if (document.cookie && document.cookie !== '') {
+			const cookies = document.cookie.split(';');
+			for (let i = 0; i < cookies.length; i++) {
+				const cookie = cookies[i].trim();
+				// Does this cookie string begin with the name we want?
+				if (cookie.substring(0, name.length + 1) === (name + '=')) {
+					cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+					break;
+				}
+			}
+		}
+		return cookieValue;
+	}
+	const csrftoken = getCookie('csrftoken');
+	
+</script>
+	<script src="{% static './js/updateCart.js' %}"></script>
+	<script src="{% static './js/cart.js' %}"></script>
+
+{% endblock content %}
+
+
+	

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Account{% endblock title %}
+ {% block breadcrumbs %}
+	<div class="breadcrumbs">
+		<div class="container">
+			<div class="breadcrumbs-main">
+				<ol class="breadcrumb">
+					<li><a href="{% url 'shop:homePage' %}">Home</a></li>
+					<li class="active">account</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+ {% endblock breadcrumbs %}
+{% block content %}
+	<div class="account">
+		<div class="container"> 
+			<div class="account-bottom">
+				<div class="col-md-6 account-left">
+					<form method = "post">
+					{% csrf_token %}
+					<div class="account-top heading">
+						<h3>NEW CUSTOMERS</h3>
+					</div>
+					{% for form_field in form %}
+						<div class="address">
+						<span>{{form_field.label}}</span>
+						{{form_field}}
+						<small class='text-danger'>{{form_field.errors|striptags}}</small>
+					</div>
+					{% endfor %}
+
+					<div class="address new">
+						<input name = "submit" value = "sign_up" type="submit">
+					</div>
+					</form>
+				</div>
+				<div class="col-md-6 account-left">
+					<form method='post'>
+					{% csrf_token %}
+					<div class="account-top heading">
+						<h3>REGISTERED CUSTOMERS</h3>
+					</div>
+					
+					{% for form in login_form %}
+						<div class="address">
+							<span>{{form.label}}</span>
+								{{form}}
+									{{form.errors}}
+
+							<small class='text-danger'>{{form.errors|striptags}}</small>
+						</div>
+					{% endfor %}
+
+					<div class="address">
+						<input name = "submit" value = "Login" type="submit">
+						<br>
+						<br>
+						<a class="forgot" href="{% url 'password_reset' %}">Forgot Your Password?</a>
+					</div>
+				</div>
+				</form>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	<!--end-account-->
+{% endblock content %}
+

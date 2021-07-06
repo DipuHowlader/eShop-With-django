@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Search page{% endblock title %}
+
+{% block breadcrumbs %}
+  <!--start-breadcrumbs-->
+	<div class="breadcrumbs">
+		<div class="container">
+			<div class="breadcrumbs-main">
+				<ol class="breadcrumb">
+					<li><a href="{% url 'shop:homePage' %}">Home</a></li>
+					<li class="active">Search Result</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+	<!--end-breadcrumbs-->
+  {% endblock breadcrumbs %}
+
+{% block content %}
+
+<div class="product">
+		<div class="container">
+			<div class="product-main">
+				<div class="col-md-12 p-left">
+				{% if products %}
+					<h2 class='text-center'>Here is your <span class='danger'>shoes</span></h2>
+				{% endif %}
+				
+				{% for item in products %}
+
+					<div class="col-sm-6 col-lg-4 product-one product-left single-left"> 
+					<div class="p-one simpleCart_shelfItem">
+						<a href="{% url 'shop:singleProductPage' item.id %}">
+								<img src="{{item.image_url.url}}" alt="product" />
+								<div class="mask mask1">
+									<span>Quick View</span>
+								</div>
+							</a>
+						<h4>{{item.title}}</h4>
+						<p><a class="item_add" href="#"><i></i> <span class=" item_price">${{item.price}}</span></a></p>
+					</div>
+				</div>
+
+                    {% empty %}
+                    <h2>Not a great match. please try different keyword</h2>
+
+				{% endfor %}
+
+			</div> 
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+
+{% endblock content %}
+
+

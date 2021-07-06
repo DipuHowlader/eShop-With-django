@@ -1,0 +1,111 @@
+{% extends "base.html" %} 
+{% load static%}
+{% block title %}Products{% endblock title %}
+{% block breadcrumbs %}
+<!--start-breadcrumbs-->
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="breadcrumbs-main">
+      <ol class="breadcrumb">
+        <li><a href="{% url 'shop:homePage' %}">Home</a></li>
+        <li class="active">Products</li>
+      </ol>
+    </div>
+  </div>
+</div>
+<!--end-breadcrumbs-->
+{% endblock breadcrumbs %} 
+{% block content %}
+<!--start-product-->
+<div class="product">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 p-left">
+        {% for item in products %}
+			<div class="col-sm-6 col-lg-4 product-one product-left single-left">
+				<div class="p-one simpleCart_shelfItem">
+					<a href="{% url 'shop:singleProductPage' item.id %}">
+					<img src="{{item.image_url.url}}" alt="product" />
+					<div class="mask mask1">
+						<span>Quick View</span>
+					</div>
+					</a>
+					<h4>{{item.title}}</h4>
+					<p>
+					<a class="item_add" href="#"
+						><i></i> <span class="item_price">${{item.price}}</span></a
+					>
+					</p>
+				</div>
+			</div>
+        {% endfor %}
+			<div class="col-md-12">
+				<nav class='text-center' aria-label="Page navigation ">
+					<ul class="pagination pagination-lg pagination-mr">
+						{% if products.has_previous %}
+							<li><a href="?page={{products.previous_page_number}}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+						{% else %}
+							<li class='disabled'><a aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+						{% endif %}
+
+						{% for i in  products.paginator.page_range%}
+							{% if products.number == i %}
+								<li class='active'><a href="?page={{i}}">{{i}}</a></li>
+							{% else %}
+								<li><a href="?page={{i}}">{{i}}</a></li>
+							{% endif %}
+						{% endfor %}
+
+						{% if products.has_next %}
+							<li><a href="?page={{products.next_page_number}}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+						{% else %}
+							<li class='disabled'><a aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+						{% endif %}
+				</nav>
+	  		</div>
+      </div>	
+
+      <div class="col-md-3 p-right single-right">
+        <h3>Categories</h3>
+        <ul class="product-categories">
+          <li><a href="#">Blucher Shoe</a> <span class="count">(14)</span></li>
+          <li><a href="#">Clog Shoe</a> <span class="count">(2)</span></li>
+          <li><a href="#">Snow Boot Shoe</a> <span class="count">(2)</span></li>
+          <li><a href="#">Galesh Shoe</a> <span class="count">(11)</span></li>
+          <li><a href="#">pataugas Shoe</a> <span class="count">(3)</span></li>
+          <li><a href="#">Jazz Shoe</a> <span class="count">(3)</span></li>
+        </ul>
+        <h3>Colors</h3>
+        <ul class="product-categories">
+          <li><a href="#">Green</a> <span class="count">(14)</span></li>
+          <li><a href="#">Blue</a> <span class="count">(2)</span></li>
+          <li><a href="#">Red</a> <span class="count">(2)</span></li>
+          <li><a href="#">Gray</a> <span class="count">(8)</span></li>
+          <li><a href="#">Green</a> <span class="count">(11)</span></li>
+          <li><a href="#">Yellow</a> <span class="count">(2)</span></li>
+        </ul>
+        <h3>Sizes</h3>
+        <ul class="product-categories">
+          <li><a href="#">5.5</a> <span class="count">(14)</span></li>
+          <li><a href="#">6</a> <span class="count">(2)</span></li>
+          <li><a href="#">6.5</a> <span class="count">(2)</span></li>
+          <li><a href="#">7</a> <span class="count">(8)</span></li>
+          <li><a href="#">7.5</a> <span class="count">(11)</span></li>
+        </ul>
+        <h3>Price</h3>
+        <ul class="product-categories p1">
+          <li><a href="#">600$-700$</a> <span class="count">(14)</span></li>
+          <li><a href="#">700$-800$</a> <span class="count">(2)</span></li>
+          <li><a href="#">800$-900$</a> <span class="count">(2)</span></li>
+          <li><a href="#">900$-1000$</a> <span class="count">(8)</span></li>
+          <li><a href="#">1000$-1100$</a> <span class="count">(11)</span></li>
+        </ul>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+
+<!--end-product-->
+
+{% endblock content %}

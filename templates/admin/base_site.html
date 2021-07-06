@@ -1,0 +1,28 @@
+{% extends "admin/base.html" %} 
+{% load static %}
+ {% block extrahead %}
+<link
+  rel="shortcut icon"
+  href="{% static 'images/icon/favicon.ico' %}"
+  type="image/x-icon"
+/>
+
+
+{% endblock extrahead %} 
+
+{% block title %} Admin Panel | eshop{% endblock title %} 
+
+{%block branding %}
+<a href="/admin">
+  <img
+    src="{% static 'images/logo-4.png' %}"
+    width="200px"
+    height="35"
+    alt="Free Style "
+  />
+</a>
+{% endblock branding %}
+
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}" />
+{% endblock extrastyle %}

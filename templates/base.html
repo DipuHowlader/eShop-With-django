@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="Smartphone, Nokia, Samsung, LG, SonyErricsson, Motorola web" />
+    <title>{% block title %}{% endblock title %} | eshop</title>
+    <link rel="shortcut icon" href="{% static 'images/icon/favicon.ico' %}" type="image/x-icon">
+     <link rel="stylesheet" href="{% static 'css/loader.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/memenu.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/flexslider.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" /> 
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}" />
+  </head>
+  <body>
+  <div id="loader">
+    <div class='loader loader1'>
+      <div>
+        <div>
+          <div>
+            <div>
+              <div>
+                <div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include "header.html" %}
+  
+	{% block breadcrumbs %}{% endblock breadcrumbs %}
+	{% block content %} {% endblock content %}
+
+	{% include "footer.html" %}
+  <script src="{% static 'js/custom.js' %}"></script>
+  <script src="{% static 'js/handelSearch.js' %}"></script>
+  </body>
+</html>

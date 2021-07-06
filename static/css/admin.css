@@ -1,0 +1,25 @@
+:root{
+    --primary:#8c2830;
+    --link-fg:#000;
+    --link-hover-color:#5f5b5b;
+    --header-link-color:#fff;
+    --breadcrumbs-fg:#fff;
+    --button-hover-bg:#000;
+    --default-button-bg:#000;
+    --default-button-hover-bg:var(--primary)
+}
+
+#header{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background: #000000eb;
+    color: #fff;
+    box-shadow: 3px -2px 12px #8c28309e;
+}
+#header img{
+    object-fit: scale-down;
+}
+
+#user-tools a:focus, #user-tools a:hover{
+    color: #f38b93;
+}
