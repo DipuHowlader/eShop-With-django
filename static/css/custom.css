@@ -4,12 +4,64 @@ body{
     overflow-x: hidden;
 }
 
-  /* generic */
+/* generic */
 
-  input[type="submit"]{
-      border: none;
-      background: transparent;
-  }
+.btn.address-btn{
+    font-size: 20px;
+    width: 230px;
+    color:#000;
+    border: 2px solid #8c2830;
+    transition: background 0.8s;
+    border-radius: 0;
+    margin-top: 30px;
+}
+
+a.btn.payment-btn{
+    font-size: 20px;
+    width: 230px;
+    background: #8c2830;
+    color: #fff;
+    transition: background 0.8s;
+    border-radius: 0;
+    margin: 15px 0;
+}
+.choose-payment a.btn.payment-btn{
+    background: rgb(245 245 245);
+    color: #000000c2;
+    outline: none;
+    border: none;
+    box-shadow: none !important;
+}
+
+.choose-payment a.btn.payment-btn.active{
+    background: #8c2830;
+    color: #fff;
+}
+
+.choose-payment{
+    display: flex;
+    justify-content: space-between;
+}
+
+.payment-area{
+    box-shadow: 6px 8px 14px rgba(0,0,0, 0.2);
+    padding: 40px 50px;
+}
+
+.payment-area h2{
+    font-size: 45px;
+    font-weight: 600;
+}
+
+.payment-area label{
+    font-size: 20px;
+    margin: 10px;
+}
+
+input[type="submit"]{
+    border: none;
+    background: transparent;
+}
 
 .p-one{
     padding: 23px 15px;
@@ -212,15 +264,13 @@ label{
 .c-btns{
     width: 33px;
     height: 36px;
+    align-items: center;
    
-}
-.c-btns span{
-    height: 12px;
 }
 
 .c-btns img{
     width: 15px;
-    margin: 5px 0;
+    margin: -1px 0;
     transform: scale(0.8);
 }
 .cart span#quantity {
@@ -231,8 +281,8 @@ label{
     transform: translate(-41%,-42%);
 }
 
-.minus img{
-    transform: rotate(-180deg) scale(0.8);
+.minus{
+    transform: rotate(-180deg) scale(0.8) !important;
 }
 
 img.cart-img{
@@ -272,4 +322,24 @@ img.cart-img{
 
 .pagination-mr{
     margin-top: 40px;
+}
+
+
+/* payment */
+.info {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+}
+
+.info label{
+    margin: 5px 0;
+}
+
+.info input{
+    border: 1px solid #242424;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 10px;
 }

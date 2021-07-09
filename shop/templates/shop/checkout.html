@@ -1,5 +1,30 @@
 {% extends "base.html" %}
-{% block title %}Checkout{% endblock title %}
+{% block title %}Checkout{% endblock title %} 
 {% block content %}
+
+<div class="account">
+    <div class="container">
+  <div class="row">
+    <form method='post'>
+    <div class="heading">
+        <h3 style='margin-bottom:30px'>Add a new Details</h3>
+    </div>
+      {% for form_field in forms %}
+        <div class="address" style='margin-top:1%'>
+        <span>{{form_field.label}}</span>
+        {{form_field}}
+        <small class="text-danger">{{form_field.errors|striptags}}</small>
+      </div>
+      {% endfor %}
+        
+        <a class='btn address-btn' href='{% url "shop:paymentPage" %}'  type="submit">Deliver to this Address</a>
+        <div class="payment">
+            <a class='btn payment-btn' type="submit" >Make Payment</a>
+        </div>
+    </form>
+  </div>
+</div>
+</div>
+
 
 {% endblock content %}

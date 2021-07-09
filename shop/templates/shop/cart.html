@@ -47,8 +47,8 @@
 							<li><span>$</span><span class='price'>{{item.product.price}}</span></li>
 							<li class='cart'>
 								<div class="c-btns">
-									<span class='plus'><img data-action='increase' data-product='{{item.product.id}}' src="{% static './images/icon/arrow.svg' %}" alt="up"></span>
-									<span class='minus'><img data-action='decrease' data-product='{{item.product.id}}' src="{% static './images/icon/arrow.svg' %}" alt="down"></span>
+									<img class='plus' data-action='increase' data-product='{{item.product.id}}' src="{% static './images/icon/arrow.svg' %}" alt="up">
+									<img class='minus' data-action='decrease' data-product='{{item.product.id}}' src="{% static './images/icon/arrow.svg' %}" alt="down">
 								</div>
 								<span class='quantity'>{{item.quantity}}</span>
 							</li>
@@ -64,7 +64,7 @@
 				</div>  
                 <div class="btns">
                     <a href="{% url 'shop:productsPage' %}" class='btn'>continue shoping</a>
-					{% if cartQuantity %}
+					{% if cartData.total > 0 %}
                    		<a href="{% url 'shop:checkoutPage' %}" class='btn shop' >Checkout</a>
 					{% endif %}
                 

@@ -5,6 +5,7 @@ const decrease = document.querySelectorAll('.minus')
 
 
 const UpdateData = (e) =>{
+    if (user === 'AnonymousUser') return
         const action = e.target.dataset.action
         const product = e.target.dataset.product
         const URL = '/update_data/'
@@ -24,8 +25,8 @@ const UpdateData = (e) =>{
         .then(data =>console.log(data))
 
         //stop page refreshing for quantity update
-        if (action != 'increase' && action != 'decrease') {
-            location.reload(true)
+        if (action == 'remove' || action == 'add') {
+            location.reload(true)   
         }
         
 }

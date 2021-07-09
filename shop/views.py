@@ -1,15 +1,17 @@
 from django.contrib.auth.forms import  AuthenticationForm, PasswordChangeForm
+from django.db.models.expressions import F
 from django.http.response import JsonResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, resolve_url
 from django.urls.base import reverse_lazy
 from django.views import View
 from django.contrib import messages
-from .forms import customUserCreationForm
+from .forms import customUserCreationForm, customerAddress
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, update_session_auth_hash, logout
 from .models import Product, Cart
-import json
 from django.core.paginator import Paginator
+from django.contrib.auth.mixins import LoginRequiredMixin
+import json
 
 def cartInformation(request):
     total = 0 
@@ -43,7 +45,10 @@ class cart(View):
 
 class checkout(View):
     def get(self, request):
-        return render(request, 'shop/checkout.html', {'cartData' :cartInformation(request)})
+        form = customerAddress
+        return render(request, 'shop/checkout.html', {'cartData' :cartInformation(request),
+                                                        'forms':form
+                                                        })
     
 
 class products(View):
@@ -67,17 +72,17 @@ class singleProduct(View):
 
 
 class accounts(View):
-    def get(self, request):
+    def get(self, request, *args, **kwargs):
         form = customUserCreationForm
-        login_form = AuthenticationForm(request.POST)
+        login_form = AuthenticationForm()
         return render(request, 'shop/account.html', {'form': form,
                                                     'login_form' :login_form,
                                                    'cartData' :cartInformation(request)})
 
-    def post(self, request):
-        if request.POST.get('submit') == 'sign_up':
-            form = customUserCreationForm(request.POST)
-            login_form = AuthenticationForm(request.POST)
+    def post(self, request, *args, **kwargs):
+        login_form = AuthenticationForm()
+        form = customUserCreationForm(request.POST)
+        if request.POST.get('submit') == 'sign up':
             if form.is_valid():
                 first_name = request.POST['first_name']
                 last_name = request.POST['last_name']
@@ -95,20 +100,20 @@ class accounts(View):
                     messages.success(request, 'Congratulations!! Registered successfully')
                     return redirect ('/')
         else:
-            form = customUserCreationForm(request.user)
+            form = customUserCreationForm()
         
         if request.POST.get('submit') == 'Login':
-            username = request.POST['username']
-            password = request.POST['password']
-            login_form = AuthenticationForm(request.POST)
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            # login_form = AuthenticationForm(request.POST)
             user = authenticate(request,username = username, password = password)
             if user is not None:
                 messages.success(request, 'you have logged in Successfully!!')
                 login(request,user)
                 return redirect ('/')
             else:
-                messages.error(request, 'Please!! correct the error below')
-
+                messages.error(request, 'Email and passsword combination doesn\'t match')
+        print(form, login_form)
         return render(request, 'shop/account.html', {'form': form, 'login_form' :login_form,
                                                    'cartData' :cartInformation(request)
                                                     })
@@ -119,8 +124,15 @@ def updateData(request):
     productID = data['product']
     product = Product.objects.get(id = productID)
     if action == 'add':
-        if product:
-            Cart.objects.create(user = request.user, product = product)
+        cart = [item.product.id for item in Cart.objects.filter(user = request.user)]
+        if product and product.id not in cart:
+            Cart.objects.create(user = request.user, product=product)
+            messages.success(request, 'Product is added to cart !!')
+
+        if product.id in cart:
+            increase = Cart.objects.filter(product = product).get(user=request.user)
+            increase.quantity += 1
+            increase.save()
 
     elif action == 'increase':
         cart = Cart.objects.filter(product = product)
@@ -131,25 +143,24 @@ def updateData(request):
     elif action == 'decrease':
         cart = Cart.objects.filter(product = product)
         cart = cart.get(user = request.user)
-        cart.quantity -=1
-        cart.save()
+        if cart.quantity > 1:
+            cart.quantity -= 1
+            cart.save()
 
     elif action == 'remove':
-        cart = Cart.objects.filter(product = product).get(user = request.user).delete()
+        Cart.objects.filter(product = product).get(user=request.user).delete()
 
     return (JsonResponse({
         'item': 'updated'
-    },safe= True))
+    },safe= False))
 
 
-class changePasswordView(View):
+class changePasswordView(LoginRequiredMixin,View):
     def get(self, request):
-        
         form = PasswordChangeForm(request.user)
         return render(request, 'accounts/passwordChange.html', {'form': form, 'cartData' :cartInformation(request)})
 
     def post(self, request):
-        
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             user = form.save()
@@ -160,3 +171,8 @@ class changePasswordView(View):
         else:
             messages.error(request, 'please correct the error below')
         return render(request, 'accounts/passwordChange.html', {'form':form, 'cartData' :cartInformation(request)})
+
+
+class paymentPage(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'shop/payment.html')

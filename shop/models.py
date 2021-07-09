@@ -1,10 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-import math
-
-from django.db.models.aggregates import Max
-from django.urls.base import set_urlconf
-
+from django.core.validators import MinValueValidator
 
 class Product(models.Model):
     color_choice = (
@@ -80,7 +76,7 @@ class Product(models.Model):
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=1)
+    quantity = models.PositiveIntegerField(default = 1, validators=[MinValueValidator(1)])
     created_at = models.DateTimeField(auto_now_add=True)
 
     @property
@@ -89,3 +85,20 @@ class Cart(models.Model):
 
     def __str__(self):
         return self.product.title
+
+
+class userAddress(models.Model):
+    select_address = (
+        
+        ('--', '------'),
+        ('of', 'Office'),
+        ('ho', 'Home'),
+        ('co', 'Commercial'),
+    )
+    full_name = models.CharField(max_length=10)
+    email = models.EmailField()
+    mobile_number = models.CharField(max_length=15)
+    zip_code = models.CharField(max_length=6)
+    town = models.CharField(max_length=100)
+    address = models.CharField(choices=select_address, max_length=2)
+        

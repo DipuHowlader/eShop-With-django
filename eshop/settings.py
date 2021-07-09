@@ -118,6 +118,7 @@ STATICFILES_DIRS =[
 MEDIA_URL = '/products/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/products')
 
+LOGIN_REDIRECT_URL = reverse_lazy('accountPage')
 LOGOUT_REDIRECT_URL = reverse_lazy('accountPage')
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
