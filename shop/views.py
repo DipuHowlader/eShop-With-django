@@ -175,4 +175,4 @@ class changePasswordView(LoginRequiredMixin,View):
 
 class paymentPage(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'shop/payment.html')
+        return render(request, 'shop/payment.html',{'cartData' :cartInformation(request)})

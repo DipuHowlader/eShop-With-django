@@ -4,6 +4,9 @@ body{
     overflow-x: hidden;
 }
 
+html{
+    scroll-behavior: smooth;
+}
 /* generic */
 
 .btn.address-btn{
@@ -326,20 +329,24 @@ img.cart-img{
 
 
 /* payment */
-.info {
+.detail {
     display: flex;
     flex-direction: column;
     margin: 20px 0;
 }
 
-.info label{
+.detail label{
     margin: 5px 0;
 }
 
-.info input{
+.detail input{
     border: 1px solid #242424;
     outline: none;
     width: 100%;
     font-size: 14px;
     padding: 10px 10px;
+}
+
+.info.none{
+    display: none;
 }

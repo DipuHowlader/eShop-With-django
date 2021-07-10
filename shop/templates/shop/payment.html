@@ -10,32 +10,32 @@
         <h3 style='margin-bottom:30px'>Payment</h3>
     </div>
     <div class="choose-payment">
-        <a class='btn payment-btn active' >Cash on delivery</a>
-        <a class='btn payment-btn' >Credit/Debit</a>
-        <a class='btn payment-btn'>Net Banking</a>
-        <a class='btn payment-btn'>Paypal account</a>
+        <a class='btn payment-btn active' data-reveal = 'cod' >Cash on delivery</a>
+        <a class='btn payment-btn' data-reveal='card' >Credit/Debit</a>
+        <a class='btn payment-btn' data-reveal='banking'>Net Banking</a>
+        <a class='btn payment-btn' data-reveal='paypal'>Paypal account</a>
     </div>
      
     <div class="payment-area">
-        <div class="cod-info">
-            {% comment %} <h2>COD</h2>
+        <div class="cod-info info" data-desc='cod'>
+            <h2>COD</h2>
             <input type="checkbox" name="check" id="check">
-            <label for='check'>We also accept Credit/Debit card on delivery. Please Check with the agent.</label> {% endcomment %}
+            <label for='check'>We also accept Credit/Debit card on delivery. Please Check with the agent.</label> 
         </div>
-        <div class="card-info">
-            <div class="info">
+        <div class="card-info info none" data-desc='card'>
+            <div class="detail">
                 <label for='name'>Names on Card</label>
                 <input placeholder='john smith' type="text" name="name" id="name">
             </div>
 
-             <div class="info">
+             <div class="detail">
                 <label for='c-number'>Card Number</label>
-                <input placeholder='.... .... .... ....' type="text" name="c-number" id="c-number">
+                <input placeholder='•••• •••• •••• ••••' type="text" name="c-number" id="c-number">
             </div>
             
-            <div class="info">
+            <div class="detail">
                 <label for='cvv'>CVV</label>
-                <input placeholder='...' type="text" name="cvv" id="cvv">
+                <input Â·="" inputmode="numeric" placeholder='•••' type="text" name="cvv" id="cvv">
             </div>
 
              <div class="payment">
@@ -43,7 +43,77 @@
             </div>
 
 
-        </div>        
+        </div> 
+
+        <div class="info none" data-desc='banking'>
+            <h3>Select some Popular Banks</h3>
+
+            <div class="bank">
+                <input type="radio" name="bank" id="syndicate">
+                <label for="syndicate">Syndicate Bank</label>
+            </div>
+
+            <div class="bank">
+                <input type="radio" name="bank" id="baroda">
+                <label for="baroda">Bank of Baroda</label>
+            </div>
+
+            <div class="bank">
+                <input type="radio" name="bank" id="canara">
+                <label for="canara">Canara Bank</label>
+            </div>
+
+            <div class="bank">
+                <input type="radio" name="bank" id="icic">
+                <label for="icic">ICIC Bank</label>
+            </div>
+
+            <div class="bank">
+                <input type="radio" name="bank" id="india">
+                <label for="India">State Bank of India</label>
+            </div>
+
+            <div class="bank">
+                <input type="radio" name="bank" id="another">
+                <label for="another">Another</label>
+            </div>
+
+            <div class="payment">
+                <a class='btn payment-btn' type="submit" >Pay Now</a>
+            </div>
+
+            <h3>Or Select another Bank</h3>
+        </div>      
+
+        <div class="info none" data-desc='paypal'>
+            <div class="row">
+                <div class="col-md-6">
+
+                </div> 
+
+                <div class="col-md-6">
+                    <div class="detail">
+                <label for='name'>Card holder</label>
+                <input placeholder='john smith' type="text" name="name" id="name">
+            </div>
+
+             <div class="detail">
+                <label for='c-number'>Card Number</label>
+                <input placeholder='•••• •••• •••• ••••' type="text" name="c-number" id="c-number">
+            </div>
+            
+            <div class="detail">
+                <label for='cvv'>CVV</label>
+                <input Â·="" inputmode="numeric" placeholder='•••' type="text" name="cvv" id="cvv">
+            </div>
+
+            <div class="detail">
+                <label for='cvv'>Valid Thru</label>
+                <input Â·="" inputmode="numeric" placeholder='MM/YY' type="text" name="cvv" id="cvv">
+            </div>
+                </div>
+            </div>
+        </div>  
     </div>
         
     </form>

@@ -284,7 +284,9 @@
 						<li><a href="{% url  'shop:productsPage' %}">Gift Cards</a></li>
 						<li><a href="{% url  'shop:productsPage' %}">Contact Us</a></li>
 						<span></span>
-						<li><a href="{% url  'passwordChange' %}">Change Password</a></li>
+						{% if request.user.is_authenticated %}
+							<li><a href="{% url  'passwordChange' %}">Change Password</a></li>
+						{% endif %}
 						<li><a href="{% url  'shop:productsPage' %}">Saved Cards</a></li>
 						<li><a href="{% url  'shop:productsPage' %}">Brands</a></li>
 						<li><a href="{% url  'shop:productsPage' %}">Saved Addressess</a></li>
