@@ -113,7 +113,6 @@ class accounts(View):
                 return redirect ('/')
             else:
                 messages.error(request, 'Email and passsword combination doesn\'t match')
-        print(form, login_form)
         return render(request, 'shop/account.html', {'form': form, 'login_form' :login_form,
                                                    'cartData' :cartInformation(request)
                                                     })

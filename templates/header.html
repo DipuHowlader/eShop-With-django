@@ -1,6 +1,7 @@
 {% load static%}
 <!-- top header -->
-<div class="top-header">
+<section id="header">
+	<div class="top-header">
 	<div class="container">
 		<div class="top-header-main">
 			<div class="col-md-4 top-header-left">
@@ -16,7 +17,7 @@
 				<div class="cart box_1">
 						<a href="{% url 'shop:cartPage' %}">
 						<h3> <div class="total">
-							<span class="simpleCart_total"></span>${{cartData.total}} (<span id="simpleCart_quantity" class="simpleCart_quantity">{{cartData.quantity}}</span> items)</div>
+							<span class="simpleCart_total">${{cartData.total}}</span><span id="simpleCart_quantity" class="simpleCart_quantity"> ({{cartData.quantity}}</span> items)</div>
 							<img src="{% static 'images/cart-1.png' %}" alt="cart" />
 						</a>
 						<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
@@ -314,3 +315,4 @@
 	
 </div>
 <!--bottom-header end-->
+</section>

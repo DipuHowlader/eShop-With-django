@@ -2,6 +2,7 @@
 from pathlib import Path
 from django.urls import reverse_lazy
 import os
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -10,10 +11,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-vn(np=tqav#wut30z!%!n_yebq3(mka2nz=tr)pag81bt4k*ib'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-vn(np=tqav#wut30z!%!34234124n_yebq3(mka2nz=tr)pag81bt4k*ib')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', '')  !=False
 
 ALLOWED_HOSTS = []
 
@@ -40,6 +41,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # whitenoise
+    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 ROOT_URLCONF = 'eshop.urls'
@@ -68,10 +72,15 @@ WSGI_APPLICATION = 'eshop.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'eshop__db',
+        'USER' : 'postgres',
+        'PASSWORD' : '1234',
+        'HOST' : 'localhost'
     }
 }
+
+DATABASES['default']  = dj_database_url.config(default= 'postgres://postgres:1234@localhost/eshop__db')
 
 
 # Password validation
@@ -126,3 +135,15 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# deployment
+SECURE_HSTS_SECONDS = 31536000
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+SECURE_HSTS_PRELOAD = True
+CSRF_COOKIE_SECURE = True
+
+# whtienoise
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedMainfestStaticFilesStorage'
