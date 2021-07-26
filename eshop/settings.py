@@ -120,6 +120,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR,'staticroot')
+
 STATICFILES_DIRS =[
     BASE_DIR / 'static'
 ]
@@ -146,4 +149,4 @@ SECURE_HSTS_PRELOAD = True
 CSRF_COOKIE_SECURE = True
 
 # whtienoise
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedMainfestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

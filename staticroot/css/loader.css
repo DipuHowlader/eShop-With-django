@@ -1,0 +1,107 @@
+/* loader */
+#loader{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    transition: 0.5s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #fff;
+}
+
+#loader.vanish{
+    opacity: 0;
+    visibility: hidden;
+    z-index: -1;
+}
+@-webkit-keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  @-webkit-keyframes rotate2 {
+    0% {
+      transform: rotate(0deg);
+      border-top-color: rgba(0, 0, 0, 0.5);
+    }
+    50% {
+      transform: rotate(180deg);
+      border-top-color: rgba(0, 0, 255, 0.5);
+    }
+    100% {
+      transform: rotate(360deg);
+      border-top-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+  @keyframes rotate2 {
+    0% {
+      transform: rotate(0deg);
+      border-top-color: rgba(0, 0, 0, 0.5);
+    }
+    50% {
+      transform: rotate(180deg);
+      border-top-color: rgba(0, 0, 255, 0.5);
+    }
+    100% {
+      transform: rotate(360deg);
+      border-top-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  
+
+  .loader {
+    position: relative;
+    margin: 75px auto;
+    width: 150px;
+    height: 150px;
+    display: block;
+    overflow: hidden;
+  }
+  .loader div {
+    height: 100%;
+  }
+  
+  /* loader 1 */
+  .loader1,
+  .loader1 div {
+    border-radius: 50%;
+    padding: 8px;
+    border: 2px solid transparent;
+    -webkit-animation: rotate linear 3.5s infinite;
+            animation: rotate linear 3.5s infinite;
+    border-top-color: rgba(0, 0, 0, 0.5);
+    border-bottom-color: rgba(0, 0, 255, 0.5);
+  }
+  
+  div:hover {
+    -webkit-animation-play-state: paused;
+            animation-play-state: paused;
+  }
+  
+  .loader,
+  .loader * {
+    will-change: transform;
+  }

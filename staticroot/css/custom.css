@@ -1,0 +1,352 @@
+@import url('./fonts.css');
+body{
+    position: relative;
+    overflow-x: hidden;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+/* generic */
+
+.btn.address-btn{
+    font-size: 20px;
+    width: 230px;
+    color:#000;
+    border: 2px solid #8c2830;
+    transition: background 0.8s;
+    border-radius: 0;
+    margin-top: 30px;
+}
+
+a.btn.payment-btn{
+    font-size: 20px;
+    width: 230px;
+    background: #8c2830;
+    color: #fff;
+    transition: background 0.8s;
+    border-radius: 0;
+    margin: 15px 0;
+}
+.choose-payment a.btn.payment-btn{
+    background: rgb(245 245 245);
+    color: #000000c2;
+    outline: none;
+    border: none;
+    box-shadow: none !important;
+}
+
+.choose-payment a.btn.payment-btn.active{
+    background: #8c2830;
+    color: #fff;
+}
+
+.choose-payment{
+    display: flex;
+    justify-content: space-between;
+}
+
+.payment-area{
+    box-shadow: 6px 8px 14px rgba(0,0,0, 0.2);
+    padding: 40px 50px;
+}
+
+.payment-area h2{
+    font-size: 45px;
+    font-weight: 600;
+}
+
+.payment-area label{
+    font-size: 20px;
+    margin: 10px;
+}
+
+input[type="submit"]{
+    border: none;
+    background: transparent;
+}
+
+.p-one{
+    padding: 23px 15px;
+    height: 313px;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    padding-top: 0;
+    overflow: hidden;
+}
+
+.p-one a{
+    flex-basis: 95%;
+}
+
+.p-one h4{
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.btns{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 13px;
+}
+
+.btns a.btn {
+    font-size: 20px;
+    background: #8c2830;
+    color: #fff;
+    width: 204px;
+    margin-left: 20px;
+    margin-top: 15px;
+    transition: background 0.8s;
+}
+
+.btns a.btn:hover{
+    background: #000;
+}
+
+.btns a.btn.shop{
+    background: #000;
+}
+
+.btns a.btn.shop:hover{
+    background: #8c2830;
+}
+
+
+/* nav bar */
+.top-nav{
+    display: flex;
+    justify-content: space-between;
+}
+.top-nav .profile{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 36px;
+    cursor: pointer;
+}
+.top-nav .profile span{
+    font-size: 12px;
+    font-family: Lato, Bangla725, sans-serif;
+    text-transform: uppercase;
+    font-weight: 600;
+    color:#8c2830;
+}
+.top-nav .profile img{
+    width: 17px;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.top-nav .profile .icon {
+    position: relative;
+}
+
+.profile:hover .mepanel{
+    opacity: 1;
+    visibility: visible;
+}
+.profile .mepanel {
+    width: 267px;
+    position: absolute;
+    top: 50px;
+    left: -45px;
+    z-index: 999;
+    background: #fff;
+    padding: 10px 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.5s;
+    box-shadow: -12px 14px 20px 7px rgb(21 4 4 / 20%);
+}
+
+.profile .mepanel h4{
+    font-size: 17px;
+}
+
+.profile .mepanel p{
+    font-size: 17px;
+    margin-bottom: 0;
+}
+.profile .mepanel a.btn{
+    border: 2px solid #8c2830;
+    padding: 5px 23px;
+    display: inline-block;
+    border-radius: 0;
+    font-size: 17px;
+    font-weight: 600;
+    color: #8c2830;
+    margin: 10px 0 16px;
+}
+.profile .mepanel span{
+    border-bottom: 1px solid #afa3a3bd;
+    display: block;
+    margin: 5px 0;
+}
+
+.profile .mepanel ul{
+    list-style: none;
+    padding-left: 17px;
+    padding: 8px 0;
+}
+
+.profile .mepanel ul a{
+    color: #5d4747cc;
+    text-decoration: none;
+    margin: 5px 0;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.memenu li:hover .mepanel{
+    opacity: 1;
+    visibility: visible;
+}
+
+.message {
+    width: 291px;
+    position: absolute;
+    background: #8c2830;
+    color: #fff;
+    font-size: 17px;
+    top: 0.5%;
+    right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 59px;
+    padding: 22px 10px;
+    z-index: 999;
+    transition: 0.5s;
+    text-align: center;
+}
+
+
+/* accoutns */
+
+.address input[type="submit"]{
+    margin-left: 0;
+}
+
+label{
+    font-weight: normal;
+    color: #666;
+}
+
+.password-change-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin: auto;
+}
+
+.password-change-form .account-top.heading{
+    align-self: flex-start;
+    margin-bottom: 4%;
+}
+
+.password-change-form .address{
+    width: 100%;
+    margin-top: 4%;
+}
+
+/* carts */
+
+.cart{
+    position: relative;
+}
+.c-btns{
+    width: 33px;
+    height: 36px;
+    align-items: center;
+   
+}
+
+.c-btns img{
+    width: 15px;
+    margin: -1px 0;
+    transform: scale(0.8);
+}
+.cart span#quantity {
+    font-size: 19px;
+    position: absolute;
+    right: 36%;
+    top: 50%;
+    transform: translate(-41%,-42%);
+}
+
+.minus{
+    transform: rotate(-180deg) scale(0.8) !important;
+}
+
+img.cart-img{
+    width: 130px;
+}
+
+/* flex slider */
+
+.flex-control-thumbs img{
+    height: 100px;
+    object-fit: contain;
+}
+.flexslider .slides img{
+    object-fit: scale-down;
+}
+
+.flexslider .slides > li{
+    min-height: 431px;
+    max-height: 355px;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+/* pagination */
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
+    background: #8c2830;
+    border-color: #8c2830;
+}
+.pagination > li > a:hover, .pagination > li > span:hover, .pagination > li > a:focus, .pagination > li > span:focus{
+    color: #8c2830;
+}
+.pagination > li > a, .pagination > li > span{
+    color: #8c2830;
+    border-radius: 0 !important;
+}
+
+.pagination-mr{
+    margin-top: 40px;
+}
+
+
+/* payment */
+.detail {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+}
+
+.detail label{
+    margin: 5px 0;
+}
+
+.detail input{
+    border: 1px solid #242424;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 10px;
+}
+
+.info.none{
+    display: none;
+}
