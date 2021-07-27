@@ -80,7 +80,7 @@ DATABASES = {
     }
 }
 
-# DATABASES['default']  = dj_database_url.config(default= 'postgres://postgres:1234@localhost/eshop__db')
+DATABASES['default']  = dj_database_url.config(default= 'postgres://postgres:1234@localhost/eshop__db')
 
 
 # Password validation
