@@ -152,6 +152,3 @@ cython_debug/
 
 # End of https://www.toptal.com/developers/gitignore/api/django
 
-# text data backup
-
-.product_dump.json
