@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-vn(np=tqav#wut30z!%!34234124n_yebq3(mka2nz=tr)pag81bt4k*ib')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DJANGO_DEBUG', '')  !=False
+DEBUG = os.environ.get('DJANGO_DEBUG', '')  != True
 
 ALLOWED_HOSTS = []
 
@@ -80,7 +80,7 @@ DATABASES = {
     }
 }
 
-DATABASES['default']  = dj_database_url.config(default= 'postgres://postgres:1234@localhost/eshop__db')
+# DATABASES['default']  = dj_database_url.config(default= 'postgres://postgres:1234@localhost/eshop__db')
 
 
 # Password validation
@@ -147,6 +147,8 @@ SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
 SECURE_HSTS_PRELOAD = True
 CSRF_COOKIE_SECURE = True
+
+
 
 # whtienoise
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
