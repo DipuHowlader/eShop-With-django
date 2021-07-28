@@ -1,14 +1,13 @@
 from django.contrib.auth.forms import  AuthenticationForm, PasswordChangeForm
-from django.db.models.expressions import F
 from django.http.response import JsonResponse
-from django.shortcuts import redirect, render, resolve_url
+from django.shortcuts import redirect, render
 from django.urls.base import reverse_lazy
 from django.views import View
 from django.contrib import messages
 from .forms import customUserCreationForm, customerAddress
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, update_session_auth_hash, logout
-from .models import Product, Cart
+from .models import Color, Product, Cart, Category
 from django.core.paginator import Paginator
 from django.contrib.auth.mixins import LoginRequiredMixin
 import json
@@ -49,25 +48,51 @@ class checkout(View):
         return render(request, 'shop/checkout.html', {'cartData' :cartInformation(request),
                                                         'forms':form
                                                         })
-    
 
-class products(View):
+def filterProduct(request, Product,category):
+    key = request.GET.get(category)
+    if category == 'color':
+        allproducts = Product.objects.filter(colors =key)
+    elif category == 'category':
+        allproducts = Product.objects.filter(categories=key)
+    else:
+        allproducts = Product.objects.all()
+    return allproducts
+
+class products(View): 
     def get(self, request):
-        paginator = Paginator(Product.objects.all(), 9)
+        catagories =[{'cate': i , 'count' : len(Product.objects.filter(categories=i))} for i in Category.objects.all()]
+        color =[{'cate': i, 'count' : len(Product.objects.filter(colors=i))} for i in Color.objects.all()]
+        if request.GET.get('category'):
+            paginator = Paginator(filterProduct(request,Product,'category'), 9)
+        elif request.GET.get('color'):
+            paginator = Paginator(filterProduct(request,Product,'color'), 9)
+        else:
+            paginator = Paginator(Product.objects.all(),9)
         page = paginator.page(request.GET.get('page', 1))
         return render(request,'shop/products.html',{'cartData' :cartInformation(request),
-                                                 'products' : page})
+                                                 'products' : page, 'catagories' : catagories,
+                                                    'colors':color
+                                                 })
 
 class singleProduct(View):
     def get(self, request, pk):
-        
-        paginator = Paginator(Product.objects.all(), 6)
+        catagories =[{'cate': i , 'count' : len(Product.objects.filter(categories=i))} for i in Category.objects.all()]
+        color =[{'cate': i , 'count' : len(Product.objects.filter(colors=i))} for i in Color.objects.all()]
+        if request.GET.get('category'):
+            paginator = Paginator(filterProduct(request,Product,'category'), 9)
+        elif request.GET.get('color'):
+            paginator = Paginator(filterProduct(request,Product,'color'), 9)
+        else:
+            paginator = Paginator(Product.objects.all(),9)
         page = paginator.page(request.GET.get('page', 1))
         product = Product.objects.get(id = pk)
         return render(request, 'shop/single.html', {'theProduct': product,
                                                     'products': page,
                                                     'cartData' :cartInformation(request),
-                                                    'demo': Product
+                                                    'demo': Product,
+                                                    'catagories': catagories,
+                                                     'colors':color
                                                     })
 
 

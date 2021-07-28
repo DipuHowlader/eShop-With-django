@@ -16,7 +16,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-vn(np=tqav#wut
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', '')  != True
 
-ALLOWED_HOSTS = ['hidden-hamlet-54181.herokuapp.com']
+ALLOWED_HOSTS = ['hidden-hamlet-54181.herokuapp.com','localhost', '127.0.0.1']
 
 
 # Application definition
@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'shop',
-    'contact.apps.ContactConfig'
+    'contact.apps.ContactConfig',
 ]
 
 MIDDLEWARE = [

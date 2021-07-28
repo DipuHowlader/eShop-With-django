@@ -9,7 +9,10 @@ class ProductAdmin(admin.ModelAdmin):
 
 class CartAdmin(admin.ModelAdmin):
     list_display = ('product','user', 'quantity')
-    pass
+
+class BlogAdmin(admin.ModelAdmin):
+    list_display = ('title', 'user')
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Cart, CartAdmin)
+admin.site.register(Blog, BlogAdmin)

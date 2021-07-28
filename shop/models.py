@@ -2,23 +2,29 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator
 
-class Product(models.Model):
-    color_choice = (
-        ('G', 'Green'),
-        ('B', 'Blue'),
-        ('Gr', 'Gray'),
-        ('Y', 'Yellow'),
-        ('R','Red'),
-    )
-    categories_choice = (
-        ('BS', 'BLUCHER SHOE'),
-        ('CS', 'CLOG SHOE'),
-        ('SBS', 'SNOW BOOT SHOE'),
-        ('GS', 'GALESH SHOE'),
-        ('PS', 'PATAUGAS SHOE'),
-        ('JS', 'JAZZ SHOE'),
 
-    )
+class Blog(models.Model):
+    title = models.CharField(max_length=100)
+    desc = models.TextField(max_length=300)
+    image = models.ImageField()
+    created_at = models.DateField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+class Category(models.Model):
+    title = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.title
+
+
+class Color(models.Model):
+    title = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.title
+
+class Product(models.Model):
     sizes_choice = (
         ('5.5','5.5'),
         ('6','6'),
@@ -33,11 +39,11 @@ class Product(models.Model):
     discount_price = models.FloatField(blank=True, null=True, default=0)
     in_stock = models.BooleanField(default=True)
     image = models.ImageField(blank= True)
-    image_1 = models.ImageField(blank= True, default = '')
-    image_2 = models.ImageField(blank= True, default = '')
-    image_3 = models.ImageField(blank= True, default = '')
-    colors = models.CharField(choices=color_choice, max_length=2, default='Green')
-    categories = models.CharField(choices=categories_choice, max_length=3, default='BLUCHER SHOE')
+    image_1 = models.ImageField(blank= True, default = '', null= True)
+    image_2 = models.ImageField(blank= True, default = '', null= True)
+    image_3 = models.ImageField(blank= True, default = '', null= True)
+    colors = models.ForeignKey(Color, on_delete=models.CASCADE)
+    categories = models.ForeignKey(Category, on_delete=models.CASCADE)
     sizes = models.CharField(choices=sizes_choice, max_length=3, default='5.5')
 
     @property
@@ -45,28 +51,7 @@ class Product(models.Model):
         url = ''
         if self.image:
             url = self.image
-            return url
-
-    @property
-    def image_url_1(self):
-        url = ''
-        if self.image_1:
-            url = self.image_1
-            return url
-
-    @property
-    def image_url_2(self):
-        url = ''
-        if self.image_2:
-            url = self.image_2
-            return url
-
-    @property
-    def image_url_3(self):
-        url = ''
-        if self.image_3:
-            url = self.image_3
-            return url
+        return url
 
     def __str__(self) -> str:
         return self.title

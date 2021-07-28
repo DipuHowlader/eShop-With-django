@@ -130,6 +130,7 @@
         </div>
         <div class="latest products">
           <div class="row">
+            <h2>Related Products</h2>
             {% for item in products %}
             <div class="col-sm-6 col-lg-4 product-one product-left single-left">
               <div class="p-one simpleCart_shelfItem">
@@ -177,24 +178,17 @@
         </div>
       </div>
       <div class="col-md-3 single-right">
-        {{theProduct.categories}} 
         <h3>Categories</h3>
         <ul class="product-categories">
-          <li><a href="#">Blucher Shoe</a> <span class="count">(14)</span></li>
-          <li><a href="#">Clog Shoe</a> <span class="count">(2)</span></li>
-          <li><a href="#">Snow Boot Shoe</a> <span class="count">(2)</span></li>
-          <li><a href="#">Galesh Shoe</a> <span class="count">(11)</span></li>
-          <li><a href="#">pataugas Shoe</a> <span class="count">(3)</span></li>
-          <li><a href="#">Jazz Shoe</a> <span class="count">(3)</span></li>
+          {% for item in catagories %}
+            <li><a href="{% url 'shop:productsPage' %}?category={{item.cate.id}}">{{item.cate}}</a> <span class="count">({{item.count}})</span></li>
+          {% endfor %}
         </ul>
         <h3>Colors</h3>
         <ul class="product-categories">
-          <li><a href="#">Green</a> <span class="count">(14)</span></li>
-          <li><a href="#">Blue</a> <span class="count">(2)</span></li>
-          <li><a href="#">Red</a> <span class="count">(2)</span></li>
-          <li><a href="#">Gray</a> <span class="count">(8)</span></li>
-          <li><a href="#">Green</a> <span class="count">(11)</span></li>
-          <li><a href="#">Yellow</a> <span class="count">(2)</span></li>
+          {% for item in colors %}
+            <li><a href="{% url 'shop:productsPage' %}?color={{item.cate.id}}">{{item.cate}}</a> <span class="count">({{item.count}})</span></li>  
+          {% endfor %}  
         </ul>
         <h3>Sizes</h3>
         <ul class="product-categories">
@@ -213,7 +207,6 @@
           <li><a href="#">1000$-1100$</a> <span class="count">(11)</span></li>
         </ul>
       </div>
-      <div class="clearfix"></div>
     </div>
   </div>
 </div>

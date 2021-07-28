@@ -21,7 +21,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-9 p-left">
-        {% for item in products %}
+      {% for item in products %}
 			<div class="col-sm-6 col-lg-4 product-one product-left single-left">
 				<div class="p-one simpleCart_shelfItem">
 					<a href="{% url 'shop:singleProductPage' item.id %}">
@@ -38,51 +38,54 @@
 					</p>
 				</div>
 			</div>
+
+        {% empty %}
+          <h2>There is no Porducts</h2>
         {% endfor %}
-			<div class="col-md-12">
-				<nav class='text-center' aria-label="Page navigation ">
-					<ul class="pagination pagination-lg pagination-mr">
-						{% if products.has_previous %}
-							<li><a href="?page={{products.previous_page_number}}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-						{% else %}
-							<li class='disabled'><a aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-						{% endif %}
 
-						{% for i in  products.paginator.page_range%}
-							{% if products.number == i %}
-								<li class='active'><a href="?page={{i}}">{{i}}</a></li>
-							{% else %}
-								<li><a href="?page={{i}}">{{i}}</a></li>
-							{% endif %}
-						{% endfor %}
 
-						{% if products.has_next %}
-							<li><a href="?page={{products.next_page_number}}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
-						{% else %}
-							<li class='disabled'><a aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
-						{% endif %}
-				</nav>
-	  		</div>
+      {% if products %}
+      <div class="col-md-12">
+      <nav class='text-center' aria-label="Page navigation ">
+        <ul class="pagination pagination-lg pagination-mr">
+          {% if products.has_previous %}
+            <li><a href="?page={{products.previous_page_number}}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+          {% else %}
+            <li class='disabled'><a aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+          {% endif %}
+
+          {% for i in  products.paginator.page_range%}
+            {% if products.number == i %}
+              <li class='active'><a href="?page={{i}}">{{i}}</a></li>
+            {% else %}
+              <li><a href="?page={{i}}">{{i}}</a></li>
+            {% endif %}
+          {% endfor %}
+
+          {% if products.has_next %}
+            <li><a href="?page={{products.next_page_number}}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+          {% else %}
+            <li class='disabled'><a aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+          {% endif %}
+      </nav>
+      </div>
+      {% endif %}
+
+
       </div>	
 
       <div class="col-md-3 p-right single-right">
         <h3>Categories</h3>
         <ul class="product-categories">
-          <li><a href="#">Blucher Shoe</a> <span class="count">(14)</span></li>
-          <li><a href="#">Clog Shoe</a> <span class="count">(2)</span></li>
-          <li><a href="#">Snow Boot Shoe</a> <span class="count">(2)</span></li>
-          <li><a href="#">Galesh Shoe</a> <span class="count">(11)</span></li>
-          <li><a href="#">pataugas Shoe</a> <span class="count">(3)</span></li>
-          <li><a href="#">Jazz Shoe</a> <span class="count">(3)</span></li>
+          {% for item in catagories %}
+            <li><a href="{% url 'shop:productsPage' %}?category={{item.cate.id}}">{{item.cate}}</a> <span class="count">({{item.count}})</span></li>
+          {% endfor %}
         </ul>
         <h3>Colors</h3>
         <ul class="product-categories">
-          <li><a href="#">Green</a> <span class="count">(14)</span></li>
-          <li><a href="#">Blue</a> <span class="count">(2)</span></li>
-          <li><a href="#">Red</a> <span class="count">(2)</span></li>
-          <li><a href="#">Gray</a> <span class="count">(8)</span></li>
-          <li><a href="#">Green</a> <span class="count">(11)</span></li>
-          <li><a href="#">Yellow</a> <span class="count">(2)</span></li>
+          {% for item in colors %}
+            <li><a href="{% url 'shop:productsPage' %}?color={{item.cate.id}}">{{item.cate}}</a> <span class="count">({{item.count}})</span></li>  
+          {% endfor %}  
         </ul>
         <h3>Sizes</h3>
         <ul class="product-categories">
